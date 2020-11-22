@@ -1,0 +1,24 @@
+build
+
+# Autoconf files
+/autom4te.cache
+/autoscan.log
+/autoscan-*.log
+/aclocal.m4
+/compile
+/config.h.in
+/configure
+/configure.scan
+/depcomp
+/install-sh
+/missing
+/stamp-h1
+/ar-lib
+
+config.guess
+config.h.*
+config.sub
+ltmain.sh
+m4/
+
+Makefile.in
