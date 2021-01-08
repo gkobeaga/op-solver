@@ -1,5 +1,14 @@
 name: clang-format check
-on: [push, PR]
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+
 jobs:
   formatting-check:
     name: Formatting Check
