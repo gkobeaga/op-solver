@@ -2,10 +2,13 @@ include_HEADERS		= op-solver.h
 
 SUBDIRS = lib prob
 
-lib_LTLIBRARIES		= libsolver.la
-libsolver_la_LIBADD  = lib/libsolver-lib.la \
-			  prob/libsolver-prob.la \
-			  $(CPLEX_PATH)/lib/x86-64_sles10_4.1/static_pic/libcplex.a -lpthread -lgmp
+lib_LTLIBRARIES     = libsolver.la
+libsolver_la_LIBADD = lib/libsolver-lib.la \
+		      prob/libsolver-prob.la
+
+if HAVE_LP_SOLVER
+libsolver_la_LIBADD += @LP_SOLVER_LIB@ -lpthread -lgmp
+endif
 libsolver_la_SOURCES =
 
 

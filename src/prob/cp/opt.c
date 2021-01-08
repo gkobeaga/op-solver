@@ -20,7 +20,12 @@ cp_opt(cp_prob *cp, cp_env *env, cp_sol *sol)
     }
     else if (param->appr == SOLVER_CP_APPR_EXACT_BAC)
     {
+#if HAVE_LP_SOLVER
         rval = cp_opt_exact(cp, env->exact, sol);
+#else
+        printf("./configure --with-cplex=<CPLEX_PATH>\n");
+        exit(1);
+#endif
         check_rval(rval, "failed", CLEANUP);
     }
 

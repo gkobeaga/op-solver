@@ -5,56 +5,50 @@ AC_CONFIG_SRCDIR([src/op-solver.h])
 
 AC_CONFIG_MACRO_DIR([m4])
 
-dnl AM_INIT_AUTOMAKE
 AM_INIT_AUTOMAKE([subdir-objects])
 AM_PROG_AR
 
 AC_CONFIG_HEADERS([config.h])
 
-dnl Check for programs
 dnl CFLAGS="-O3"
 AC_PROG_CC
 AC_PROG_INSTALL
 LT_INIT
 
-dnl Checks for libraries.
-AC_CONFIG_MACRO_DIR([m4])
-
-LT_INIT
-
 dnl Checks for header files.
-AC_CHECK_HEADERS([ stdlib.h math.h string.h strings.h errno.h assert.h stddef.h unistd.h malloc.h sys/types.h sys/times.h ])
+AC_CHECK_HEADERS([ stdlib.h math.h string.h strings.h errno.h assert.h stddef.h unistd.h malloc.h sys/types.h sys/times.h gmp.h])
 
 AC_ARG_ENABLE([debug],
               [AS_HELP_STRING([--enable-debug],
                               [enable debug code [default=no]])],
                               [debug="$withval"], [debug=no])
 
-dnl CPLEX path
-AC_ARG_VAR([CPLEX_PATH], [path to CPLEX [default=/opt/]])
-if test -z "$CPLEX_PATH"; then
-  if test -d "/opt/ibm"; then
-    CPLEX_PATH='/opt/ibm/ILOG/CPLEX_Studio125/cplex'
-  else
-    AC_MSG_ERROR([CPLEX path not found.])
-    fi
-fi
+AC_ARG_WITH([cplex], AS_HELP_STRING([--with-cplex], [Use CPLEX]),[],[with_cplex=no] )
+AS_IF([test "x$with_cplex" != "xno"],
+      [
+       have_cplex=yes
+       AM_CONDITIONAL(HAVE_LP_SOLVER, true)
+       ],
+       [
+        have_cplex=no
+        AM_CONDITIONAL(HAVE_LP_SOLVER, false)
+        ])
 
-dnl GMP path
-#AC_ARG_VAR([GMP_PATH], [path to GMP [default=/opt/]])
-#if test -z "$GMP_PATH"; then
-#  if test -d "/opt/gmp-6.1.2"; then
-#    GMP_PATH='/opt/gmp-6.1.2'
-#  else
-#    AC_MSG_ERROR([GMP path not found.])
-#    fi
-#fi
+AS_IF([test "x$have_cplex" = "xyes"],
+      [
+       AC_SUBST(LP_SOLVER_API, [cplex.c])
+       LP_SOLVER_API=cplex.c
+       AC_SUBST(LP_SOLVER_LIB, [$with_cplex/lib/x86-64_sles10_4.1/static_pic/libcplex.a])
+       AC_SUBST(LP_SOLVER_INCLUDE, [$with_cplex/include])
+       ],
+       [AS_IF([test "x$with_cplex" = "xyes"],
+              [AC_MSG_ERROR([cplex requested but not found])
+              ])
+       ])
 
-dnl Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_PID_T
 AC_TYPE_SIZE_T
 
-dnl Checks for library functions.
 AC_FUNC_MALLOC
 AC_FUNC_REALLOC
 AC_CHECK_FUNCS([memset pow sqrt])
@@ -95,8 +89,7 @@ AC_MSG_NOTICE([summary of build options:
                Host type:         ${host}
                Install prefix:    ${prefix}
                Compiler:          ${CC} ${CFLAGS}
-               CPLEX path:        ${CPLEX_PATH}
-               GMP path:          ${GMP_PATH}
+               LP solver path:    ${with_cplex}
                Static libraries:  ${enable_static}
                Shared libraries:  ${enable_shared}
                Linker:            ${LD} ${LDFLAGS} ${LIBS}])

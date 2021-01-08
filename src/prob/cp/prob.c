@@ -7,12 +7,16 @@ eval_sol_obj(cp_prob *cp, cp_sol *sol);
 static void
 cp_init_prob_work(cp_prob *cp, solver_data *data)
 {
-    cp->n            = data->map->img_n;
-    cp->cap          = data->cap;
-    cp->data         = data;
-    cp->sol_status   = SOLVER_UNDEF;
-    cp->sol          = cp_create_sol(cp);
-    cp->ip           = ip_create_prob();
+    cp->n          = data->map->img_n;
+    cp->cap        = data->cap;
+    cp->data       = data;
+    cp->sol_status = SOLVER_UNDEF;
+    cp->sol        = cp_create_sol(cp);
+#if HAVE_LP_SOLVER
+    cp->ip = ip_create_prob();
+#else
+    cp->ip = NULL;
+#endif
     cp->eval_sol_obj = eval_sol_obj;
     return;
 }
@@ -40,7 +44,9 @@ cp_erase_prob(cp_prob *cp)
 static void
 cp_delete_prob_work(cp_prob *cp)
 {
+#if HAVE_LP_SOLVER
     ip_free_prob(&(cp->ip));
+#endif
     cp_free_sol(&(cp->sol));
     return;
 }

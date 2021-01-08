@@ -9,7 +9,12 @@ cp_create_env(void)
     env->stats     = cp_create_stats();
     env->init      = cp_create_init_env();
     env->heur      = cp_create_heur_env();
-    env->exact     = cp_create_exact_env();
+#if HAVE_LP_SOLVER
+    env->exact = cp_create_exact_env();
+#else
+    env->exact = NULL;
+
+#endif
     strcpy(env->sol_file, "prob.sol");
     return env;
 }
@@ -23,7 +28,9 @@ cp_free_env(cp_env **env)
         cp_free_stats(&((*env)->stats));
         cp_free_init_env(&((*env)->init));
         cp_free_heur_env(&((*env)->heur));
+#if HAVE_LP_SOLVER
         cp_free_exact_env(&((*env)->exact));
+#endif
         free(*env);
         *env = NULL;
     }
@@ -62,6 +69,9 @@ cp_parse_args(int argc, char *argv[], cp_env *env)
         }
     }
 
+#if HAVE_LP_SOLVER
     rval = cp_parse_exact_args(argc, argv, env->exact);
+#endif
+
     return rval;
 }

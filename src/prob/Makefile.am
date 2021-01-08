@@ -6,13 +6,17 @@ SUBDIRS =
 SUBDIRS += lib
 libsolver_prob_la_LIBADD   += lib/libsolver-prob-lib.la
 
+if HAVE_LP_SOLVER
 # Linear Problem
 SUBDIRS += lp
 libsolver_prob_la_LIBADD   += lp/libsolver-prob-lp.la
+endif
 
+if HAVE_LP_SOLVER
 # Integer Problem
 SUBDIRS += ip
 libsolver_prob_la_LIBADD   += ip/libsolver-prob-ip.la
+endif
 
 # Knapsack Problem
 SUBDIRS += kp
