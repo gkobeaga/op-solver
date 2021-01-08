@@ -2,7 +2,8 @@
 #include "op-solver.h"
 
 static int
-heuristic_clique_(solver_graph *graph, graph_vertex *u, graph_clique_repo *repo);
+heuristic_clique_(solver_graph *graph, graph_vertex *u,
+                  graph_clique_repo *repo);
 
 int
 cp_shrink_exact_bac_graph_s1(cp_prob *cp, cp_exact_bac_env *env,

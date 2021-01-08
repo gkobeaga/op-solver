@@ -1,8 +1,8 @@
 #include "op-solver.h"
 
 static void
-add_primheap(solver_graph *graph, solver_dheap *dheap, int n, int *neighbor, int max,
-             double sum_cost);
+add_primheap(solver_graph *graph, solver_dheap *dheap, int n, int *neighbor,
+             int max, double sum_cost);
 
 solver_graph *
 graph_get_mst_max(solver_graph *graph)
@@ -110,8 +110,8 @@ CLEANUP:
 }
 
 static void
-add_primheap(solver_graph *graph, solver_dheap *dheap, int n, int *neighbor, int max,
-             double sum_cost)
+add_primheap(solver_graph *graph, solver_dheap *dheap, int n, int *neighbor,
+             int max, double sum_cost)
 {
     graph_vertex *v, *other;
     graph_arc *e;

@@ -58,7 +58,7 @@ typedef struct graph_vertex
     graph_vertex *level_next;
     graph_arc *ecurrent;
 
-    int onecnt;//TODO
+    int onecnt; // TODO
     int onqueue;
     int mark_aux;
 
@@ -282,7 +282,8 @@ graph_get_comps(solver_graph *graph, int *ncomp, int **compscount,
 
 graph_clique *
 clique_create(void),
-*clique_conv_vertices2clique(solver_graph *graph, graph_vertex **vert, int vcount),
+*clique_conv_vertices2clique(solver_graph *graph, graph_vertex **vert,
+                             int vcount),
 *clique_conv_vertices2coclique(solver_graph *graph, graph_vertex **vert,
                                int vcount);
 
@@ -312,7 +313,8 @@ typedef struct graph_clique_repo
 graph_clique_repo *
 clique_create_repo(int n);
 int
-clique_register_repo(solver_graph *graph, graph_clique_repo *repo, graph_clique *c);
+clique_register_repo(solver_graph *graph, graph_clique_repo *repo,
+                     graph_clique *c);
 void
 clique_unregister_repo(solver_graph *graph, graph_clique_repo *repo, int c),
 clique_free_repo(graph_clique_repo **repo);
@@ -334,7 +336,8 @@ graph_read(char *fname);
 #define SOLVER_MST_MIN 0
 solver_graph *
 graph_get_mst(solver_graph *graph, int max),
-*graph_get_mst_max(solver_graph *graph), *graph_get_mst_min(solver_graph *graph);
+*graph_get_mst_max(solver_graph *graph),
+*graph_get_mst_min(solver_graph *graph);
 
 /* Minimum and Maximum flow problems*/
 double

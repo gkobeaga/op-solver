@@ -8,7 +8,7 @@ cp_is_ipsol_integral_connected(ip_sol *sol)
     int i, ncomp;
     graph_vertex **comps = NULL;
     int *compscount      = NULL;
-    solver_graph *graph      = sol->graph;
+    solver_graph *graph  = sol->graph;
     graph_vertex *v;
     graph_arc *arc;
 

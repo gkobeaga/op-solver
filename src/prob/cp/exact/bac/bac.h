@@ -176,7 +176,8 @@ cp_free_cut(cp_cut **cut);
 double
 cp_eval_cut(solver_graph *graph, cp_cut *cut);
 void
-cp_get_cut_arcs(solver_graph *graph, cp_cut *cut, int *nzcnt, graph_arc **nzlist);
+cp_get_cut_arcs(solver_graph *graph, cp_cut *cut, int *nzcnt,
+                graph_arc **nzlist);
 void
 cp_print_cut(cp_cut *cut);
 int
@@ -305,8 +306,8 @@ cp_sep_logical(cp_prob *cp, cp_exact_bac_env *bac_env, int *cutcount,
                cp_cut **cuts),
 cp_sep_sec_exact(cp_prob *cp, cp_exact_bac_env *bac_env, int *cutcount,
                  cp_cut **cuts),
-cp_sep_sec_exact_hong(cp_prob *cp, cp_exact_bac_env *bac_env, solver_graph *graph,
-                      graph_clique_repo *repo),
+cp_sep_sec_exact_hong(cp_prob *cp, cp_exact_bac_env *bac_env,
+                      solver_graph *graph, graph_clique_repo *repo),
 cp_sep_sec_exact_gomoryhu(cp_prob *cp, cp_exact_bac_env *bac_env,
                           solver_graph *graph, graph_clique_repo *repo),
 cp_sep_sec_comps(cp_prob *cp, cp_exact_bac_env *bac_env, int *cutcount,
@@ -335,10 +336,12 @@ cp_get_clique_repo_sec_cuts(cp_prob *cp, cp_exact_bac_env *bac_env,
 
 cp_cut *
 cp_conv_cut_sol2connect(cp_sol *sol),
-*cp_conv_cut_verts2connect(solver_graph *graph, int vcount, graph_vertex **verts);
+*cp_conv_cut_verts2connect(solver_graph *graph, int vcount,
+                           graph_vertex **verts);
 
 void
-cp_get_cut_arcs(solver_graph *graph, cp_cut *cut, int *nzcnt, graph_arc **nzlist);
+cp_get_cut_arcs(solver_graph *graph, cp_cut *cut, int *nzcnt,
+                graph_arc **nzlist);
 
 int
 cp_shrink_exact_bac_graph(cp_prob *cp, cp_exact_bac_env *bac_env,

@@ -14,7 +14,7 @@ cp_sep_cover_edge(cp_prob *cp, cp_exact_bac_env *bac_env, int *cutcount,
     cp_cut *cut;
     cp_cut_cover_edge *cover;
     solver_data *data = NULL;
-    kp_prob *kp   = NULL;
+    kp_prob *kp       = NULL;
 
     solver_graph *graph = bac_env->ip->lp->sol->graph;
 

@@ -117,7 +117,8 @@ search(solver_graph *graph, graph_vertex *v, int *last, graph_vertex **heap,
             rhs += e->x;
     }
 
-    if (graph->v[0]->used == 0 && *viol - rhs > SOLVER_IP_BAC_MIN_VIOL && *last > 2)
+    if (graph->v[0]->used == 0 && *viol - rhs > SOLVER_IP_BAC_MIN_VIOL &&
+        *last > 2)
     {
         if (!duplicated(*last, heap, *npaths, pathlen, paths))
         {

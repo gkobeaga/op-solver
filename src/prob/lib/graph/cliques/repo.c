@@ -48,7 +48,8 @@ clique_free_repo(graph_clique_repo **repo)
 }
 
 int
-clique_register_repo(solver_graph *graph, graph_clique_repo *repo, graph_clique *c)
+clique_register_repo(solver_graph *graph, graph_clique_repo *repo,
+                     graph_clique *c)
 {
     int x = clique_hash(c) % repo->cliquehashsize;
     int y = repo->cliquehash[x];

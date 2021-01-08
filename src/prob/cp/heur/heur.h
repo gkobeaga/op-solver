@@ -25,7 +25,7 @@ typedef struct cp_heur_param
 #define SOLVER_CP_INIT_RAND 2
     int select;
 #define SOLVER_CP_SEL_BERNOULLI 0 /* select using Bernoully */
-    double pinit;             /* Bernoully p for initial population */
+    double pinit;                 /* Bernoully p for initial population */
 } cp_heur_param;
 
 typedef struct cp_heur_stats

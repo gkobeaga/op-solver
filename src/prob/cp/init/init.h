@@ -12,7 +12,7 @@ typedef struct cp_init_param
 #define SOLVER_CP_INIT_RAND 2
     int select;
 #define SOLVER_CP_SEL_BERNOULLI 0 /* select using Bernoully */
-    double pinit;             /* Bernoully p for initial population */
+    double pinit;                 /* Bernoully p for initial population */
 } cp_init_param;
 
 typedef struct cp_init_stats

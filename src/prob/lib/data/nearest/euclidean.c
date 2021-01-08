@@ -95,7 +95,8 @@ CLEANUP:
 }
 
 int
-data_get_node_k_nearest_euclidean(solver_data *data, int node, int k, int **list)
+data_get_node_k_nearest_euclidean(solver_data *data, int node, int k,
+                                  int **list)
 {
     int rval = 0;
     int i;

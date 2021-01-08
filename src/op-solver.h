@@ -78,7 +78,8 @@ extern "C"
         {                                                                      \
             fprintf(stderr,                                                    \
                     SOLVER_CTERM_BOLDRED "[%s:%d] " SOLVER_CTERM_BOLDCYAN      \
-                                     "%s: " SOLVER_CTERM_RESET "rval %d - %s\n",\
+                                         "%s: " SOLVER_CTERM_RESET             \
+                                         "rval %d - %s\n",                     \
                     __FILENAME__, __LINE__, __FUNCTION__, rval, (msg));        \
             goto label;                                                        \
         }                                                                      \
@@ -90,8 +91,8 @@ extern "C"
         {                                                                      \
             fprintf(stderr,                                                    \
                     SOLVER_CTERM_BOLDRED "[%s:%d] " SOLVER_CTERM_BOLDCYAN      \
-                                     "%s: " SOLVER_CTERM_RESET                 \
-                                     "Assertion `%s` failed. - %s\n",          \
+                                         "%s: " SOLVER_CTERM_RESET             \
+                                         "Assertion `%s` failed. - %s\n",      \
                     __FILENAME__, __LINE__, __FUNCTION__, #eval, (msg));       \
             rval = 1;                                                          \
             goto label;                                                        \
@@ -106,8 +107,8 @@ extern "C"
         {                                                                      \
             fprintf(stderr,                                                    \
                     SOLVER_CTERM_BOLDRED "[%s:%d] " SOLVER_CTERM_BOLDCYAN      \
-                                     "%s: " SOLVER_CTERM_RESET                 \
-                                     "%s is NULL - %s \n",                     \
+                                         "%s: " SOLVER_CTERM_RESET             \
+                                         "%s is NULL - %s \n",                 \
                     __FILENAME__, __LINE__, __FUNCTION__, (#item), (msg));     \
             rval = 1;                                                          \
             goto label;                                                        \
@@ -175,8 +176,9 @@ extern "C"
     dheap_changekey(solver_dheap *h, int i, double newkey);
 
     solver_dheap *dheap_create(int k);
-    int dheap_resize(solver_dheap *h, int newsize), dheap_findmin(solver_dheap *h),
-    dheap_deletemin(solver_dheap *h), dheap_insert(solver_dheap *h, int i);
+    int dheap_resize(solver_dheap *h, int newsize),
+    dheap_findmin(solver_dheap *h), dheap_deletemin(solver_dheap *h),
+    dheap_insert(solver_dheap *h, int i);
 
     /* Random */
     int rng_bernoulli(double p);

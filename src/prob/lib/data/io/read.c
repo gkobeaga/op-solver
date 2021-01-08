@@ -147,7 +147,8 @@ data_read_(solver_data *data, FILE *file)
                 else if (!strcmp(field, "GEO"))
                 {
                     data->norm = SOLVER_DATA_NORM_GEOGRAPHIC;
-                    printf("  Geographical Norm (SOLVER_DATA_NORM_GEOGRAPHIC)\n");
+                    printf(
+                    "  Geographical Norm (SOLVER_DATA_NORM_GEOGRAPHIC)\n");
                 }
                 else if (!strcmp(field, "GEOM"))
                 {
@@ -487,7 +488,7 @@ create_first_map(solver_data *data)
 solver_data *
 data_read(const char *fname, int format)
 {
-    FILE *file    = NULL;
+    FILE *file        = NULL;
     solver_data *data = data_create();
 
     if (!fname)

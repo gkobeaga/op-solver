@@ -28,7 +28,8 @@ sort_vert(const void *xx, const void *yy)
 }
 
 graph_clique *
-clique_conv_vertices2clique(solver_graph *graph, graph_vertex **vert, int vcount)
+clique_conv_vertices2clique(solver_graph *graph, graph_vertex **vert,
+                            int vcount)
 {
     graph_clique *clique = clique_create();
     int i, nseg;
@@ -69,7 +70,8 @@ clique_conv_vertices2clique(solver_graph *graph, graph_vertex **vert, int vcount
 }
 
 graph_clique *
-clique_conv_vertices2coclique(solver_graph *graph, graph_vertex **vert, int vcount)
+clique_conv_vertices2coclique(solver_graph *graph, graph_vertex **vert,
+                              int vcount)
 {
     graph_clique *clique = clique_create();
     int i, nseg;

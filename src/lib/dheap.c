@@ -15,9 +15,9 @@ solver_dheap *
 dheap_create(int k)
 {
     solver_dheap *dheap = malloc(sizeof(solver_dheap));
-    dheap->loc      = NULL;
-    dheap->key      = NULL;
-    dheap->entry    = malloc(k * sizeof(int));
+    dheap->loc          = NULL;
+    dheap->key          = NULL;
+    dheap->entry        = malloc(k * sizeof(int));
     if (!dheap->entry)
         return NULL;
     dheap->loc = malloc(k * sizeof(int));
