@@ -20,8 +20,8 @@
 
 #include <inttypes.h>
 
-#include "prob/lib/data/data.h"
-#include "prob/lib/graph/graph.h"
+#include "data/data.h"
+#include "graph/graph.h"
 
 #ifdef __cplusplus
 extern "C"

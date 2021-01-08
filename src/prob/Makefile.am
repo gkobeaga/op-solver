@@ -3,9 +3,6 @@ libsolver_prob_la_SOURCES =
 libsolver_prob_la_LIBADD   =
 SUBDIRS =
 
-SUBDIRS += lib
-libsolver_prob_la_LIBADD   += lib/libsolver-prob-lib.la
-
 if HAVE_LP_SOLVER
 # Linear Problem
 SUBDIRS += lp

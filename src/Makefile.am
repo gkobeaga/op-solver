@@ -1,9 +1,11 @@
 include_HEADERS		= op-solver.h
 
-SUBDIRS = lib prob
+SUBDIRS = lib data graph prob
 
 lib_LTLIBRARIES     = libsolver.la
-libsolver_la_LIBADD = lib/libsolver-lib.la \
+libsolver_la_LIBADD = data/libsolver-data.la \
+		      graph/libsolver-graph.la \
+		      lib/libsolver-lib.la \
 		      prob/libsolver-prob.la
 
 if HAVE_LP_SOLVER

@@ -55,11 +55,10 @@ AC_CHECK_FUNCS([memset pow sqrt])
 
 AC_CONFIG_FILES([Makefile src/Makefile
                  src/lib/Makefile
+                 src/graph/Makefile
+                 src/data/Makefile
+                 src/data/nearest/kdtree/Makefile
                  src/prob/Makefile
-                 src/prob/lib/Makefile
-                 src/prob/lib/graph/Makefile
-                 src/prob/lib/data/Makefile
-                 src/prob/lib/data/nearest/kdtree/Makefile
                  src/prob/lp/Makefile
                  src/prob/ip/Makefile
                  src/prob/ip/exact/Makefile
