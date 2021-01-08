@@ -1,6 +1,9 @@
 # op-solver
 > Algorithms for the Orienteering Problem
 
+
+[![Actions Status](https://github.com/gkobeaga/op-solver/workflows/build-test/badge.svg)](https://github.com/gkobeaga/op-solver/actions)
+
 In this repository you will find the implementation of two algorithms to solve the Orienteering Problem (OP):
   - **RB&C** (exact):
  ["A revisited branch-and-cut algorithm for large-scale orienteering problems"](https://arxiv.org/abs/2011.02743) by G. Kobeaga, M. Merino and J.A. Lozano

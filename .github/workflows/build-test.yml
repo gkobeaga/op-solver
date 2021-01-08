@@ -1,0 +1,30 @@
+
+name: build-test
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: autogen
+        run: ./autogen.sh
+      - name: configure
+        run: ./configure
+      - name: make
+        run: make  
+      - name: make check
+        run: make check
+        #- name: make distcheck
+        #run: make distcheck
