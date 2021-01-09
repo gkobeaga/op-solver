@@ -23,21 +23,54 @@ AC_ARG_ENABLE([debug],
                               [enable debug code [default=no]])],
                               [debug="$withval"], [debug=no])
 
+AC_ARG_ENABLE([dummy-lp], AS_HELP_STRING([--enable-dummy-lp], [Use Dummy LP Solver]),[],[enable_dummy_lp=no] )
+AS_IF([test "x$enable_dummy_lp" != "xno"],
+      [
+       have_dummy_lp=yes
+       AM_CONDITIONAL(HAVE_LP_SOLVER, true)
+       AM_CONDITIONAL(HAVE_LP_SOLVER_DUMMY, true)
+       AM_CONDITIONAL(HAVE_LP_SOLVER_CPLEX, false)
+       ],
+       [
+        have_dummy_lp=no
+        AM_CONDITIONAL(HAVE_LP_SOLVER_DUMMY, false)
+        ])
+
+AS_IF([test "x$have_dummy_lp" = "xyes"],
+      [
+       AC_SUBST([LP_SOLVER_API])
+       LP_SOLVER_API=lib/dummy.c
+       AC_SUBST(LP_SOLVER_LIB, [])
+       AC_SUBST(LP_SOLVER_INCLUDE, [])
+       ],
+       [AS_IF([test "x$enable_dummy_lp" = "xyes"],
+              [AC_MSG_ERROR([Dummy LP requested but not found])
+              ])
+       ])
+
 AC_ARG_WITH([cplex], AS_HELP_STRING([--with-cplex], [Use CPLEX]),[],[with_cplex=no] )
 AS_IF([test "x$with_cplex" != "xno"],
       [
        have_cplex=yes
+
        AM_CONDITIONAL(HAVE_LP_SOLVER, true)
+       AM_CONDITIONAL(HAVE_LP_SOLVER_CPLEX, true)
+       AM_CONDITIONAL(HAVE_LP_SOLVER_DUMMY, false)
        ],
        [
         have_cplex=no
-        AM_CONDITIONAL(HAVE_LP_SOLVER, false)
+        AS_IF([test "x$have_dummy_lp" = "xno"],
+              [
+               AM_CONDITIONAL(HAVE_LP_SOLVER, false)
+               ],
+               [
+                AM_CONDITIONAL(HAVE_LP_SOLVER, true)
+                ])
+        AM_CONDITIONAL(HAVE_LP_SOLVER_CPLEX, false)
         ])
 
 AS_IF([test "x$have_cplex" = "xyes"],
       [
-       AC_SUBST(LP_SOLVER_API, [cplex.c])
-       LP_SOLVER_API=cplex.c
        AC_SUBST(LP_SOLVER_LIB, [$with_cplex/lib/x86-64_sles10_4.1/static_pic/libcplex.a])
        AC_SUBST(LP_SOLVER_INCLUDE, [$with_cplex/include])
        ],

@@ -21,7 +21,7 @@ jobs:
       - name: autogen
         run: ./autogen.sh
       - name: configure
-        run: ./configure
+        run: ./configure --enable-dummy-lp
       - name: make
         run: make  
       - name: make check

@@ -9,7 +9,12 @@ libsolver_prob_lp_la_SOURCES = prob.c            \
 			       stats.c  \
 			       sol.c
 if HAVE_LP_SOLVER
+if HAVE_LP_SOLVER_CPLEX
 libsolver_prob_lp_la_SOURCES+=lib/cplex.c
+endif
+if HAVE_LP_SOLVER_DUMMY
+libsolver_prob_lp_la_SOURCES+=lib/dummy.c
+endif
 endif
 
 libsolver_prob_lp_la_CPPFLAGS = \
