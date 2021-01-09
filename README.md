@@ -1,8 +1,10 @@
 # op-solver
 > Algorithms for the Orienteering Problem
 
-
 [![Actions Status](https://github.com/gkobeaga/op-solver/workflows/build-test/badge.svg)](https://github.com/gkobeaga/op-solver/actions)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/gkobeaga/op-solver/blob/master/LICENSE)
+
+----
 
 In this repository you will find the implementation of two algorithms to solve the Orienteering Problem (OP):
   - **RB&C** (exact):
