@@ -57,7 +57,7 @@ extern "C"
 #define SOLVER_VERBOSITY_INFO 2
 #define SOLVER_VERBOSITY_DEBUG 3
 
-extern unsigned long __seed__;
+    extern unsigned long __seed__;
 
 #ifndef SOLVER_MAXINT
 #define SOLVER_MAXINT ((int)(~(((unsigned)1) << ((8 * sizeof(int)) - 1))))
