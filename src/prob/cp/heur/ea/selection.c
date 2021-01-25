@@ -9,7 +9,7 @@ cp_heur_ea_selection(cp_prob *cp, cp_heur_ea_env *ea_env, cp_pop *pop,
     cp_heur_ea_param *ea_param = ea_env->param;
     int i;
     double min                 = SOLVER_MAXDOUBLE;
-    int sum                    = 0;
+    double sum                    = 0;
     double *reproductive_probs = NULL, *tprobs = NULL;
     int *preselected = NULL, *selected = NULL;
     int *indexes = NULL;
