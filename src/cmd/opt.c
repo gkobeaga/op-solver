@@ -1,8 +1,6 @@
 #include "op-solver.h"
 #include <sys/stat.h>
 
-unsigned long __seed__;
-
 struct cmd_args
 {
     const char *data_file;
