@@ -1,4 +1,6 @@
 #include "op-solver.h"
+#include "cp/exact/exact.h"
+#include "cp/exact/bac/bac.h"
 #include <sys/stat.h>
 
 struct cmd_args

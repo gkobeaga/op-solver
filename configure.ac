@@ -1,5 +1,5 @@
 AC_PREREQ([2.69])
-AC_INIT([solver],[0.1],[gorka@kobeaga.eus])
+AC_INIT([op-solver],[0.1],[gorka@kobeaga.eus])
 
 AC_CONFIG_SRCDIR([src/op-solver.h])
 
@@ -91,27 +91,26 @@ AC_CONFIG_FILES([Makefile src/Makefile
                  src/graph/Makefile
                  src/data/Makefile
                  src/data/nearest/kdtree/Makefile
-                 src/prob/Makefile
-                 src/prob/lp/Makefile
-                 src/prob/ip/Makefile
-                 src/prob/ip/exact/Makefile
-                 src/prob/ip/exact/bac/Makefile
-                 src/prob/kp/Makefile
-                 src/prob/cp/Makefile
-                 src/prob/cp/init/Makefile
-                 src/prob/cp/heur/Makefile
-                 src/prob/cp/heur/ea/Makefile
-                 src/prob/cp/exact/Makefile
-                 src/prob/cp/exact/bac/Makefile
-                 src/prob/tsp/Makefile
-                 src/prob/tsp/init/Makefile
-                 src/prob/tsp/heur/Makefile
-                 src/prob/op/Makefile
-                 src/prob/op/init/Makefile
-                 src/prob/op/heur/Makefile
-                 src/prob/op/heur/ea/Makefile
-                 src/prob/op/exact/Makefile
-                 src/prob/op/exact/bac/Makefile
+                 src/lp/Makefile
+                 src/ip/Makefile
+                 src/ip/exact/Makefile
+                 src/ip/exact/bac/Makefile
+                 src/kp/Makefile
+                 src/cp/Makefile
+                 src/cp/init/Makefile
+                 src/cp/heur/Makefile
+                 src/cp/heur/ea/Makefile
+                 src/cp/exact/Makefile
+                 src/cp/exact/bac/Makefile
+                 src/tsp/Makefile
+                 src/tsp/init/Makefile
+                 src/tsp/heur/Makefile
+                 src/op/Makefile
+                 src/op/init/Makefile
+                 src/op/heur/Makefile
+                 src/op/heur/ea/Makefile
+                 src/op/exact/Makefile
+                 src/op/exact/bac/Makefile
                  ])
 AC_OUTPUT
 

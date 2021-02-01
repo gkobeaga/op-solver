@@ -1,7 +1,7 @@
 #ifndef DATA_H
 #define DATA_H
 
-#include "nearest/kdtree/kdtree.h"
+typedef struct data_kdtree data_kdtree;
 
 /* Mapping */
 typedef struct data_map data_map;
@@ -26,7 +26,6 @@ typedef struct data_map
 
 typedef struct solver_data solver_data;
 typedef struct solver_graph solver_graph;
-typedef struct data_kdtree data_kdtree;
 typedef struct solver_data
 {
     int n;

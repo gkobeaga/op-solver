@@ -1,8 +1,6 @@
 #ifndef DATA_KDTREE_H
 #define DATA_KDTREE_H
 
-#include "../../data.h"
-
 typedef struct data_kdtree_bnds
 {
     double x[2];

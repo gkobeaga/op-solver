@@ -1,4 +1,5 @@
 #include "op-solver.h"
+#include "kdtree/kdtree.h"
 
 struct shortedge
 {

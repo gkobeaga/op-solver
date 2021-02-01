@@ -187,12 +187,12 @@ extern "C"
     void rng_choose_p(void *candidates, double *p, int ncand, void *selected,
                       int nsel, size_t size);
 
-#include "prob/lp/lp.h"
-#include "prob/ip/ip.h"
-#include "prob/kp/kp.h"
-#include "prob/cp/cp.h"
-#include "prob/tsp/tsp.h"
-#include "prob/op/op.h"
+#include "lp/lp.h"
+#include "ip/ip.h"
+#include "kp/kp.h"
+#include "cp/cp.h"
+#include "tsp/tsp.h"
+#include "op/op.h"
 
 #ifdef __cplusplus
 }

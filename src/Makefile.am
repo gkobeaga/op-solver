@@ -1,20 +1,25 @@
-include_HEADERS		= op-solver.h
+pkginclude_HEADERS= op-solver.h
 
-SUBDIRS = lib data graph prob
+SUBDIRS = lib data graph
+SUBDIRS += cp ip kp lp op tsp
 
-lib_LTLIBRARIES     = libsolver.la
-libsolver_la_LIBADD = data/libsolver-data.la \
+lib_LTLIBRARIES     = libopsolver.la
+libopsolver_la_LIBADD = data/libsolver-data.la \
 		      graph/libsolver-graph.la \
 		      lib/libsolver-lib.la \
-		      prob/libsolver-prob.la
+		      cp/libsolver-cp.la \
+		      ip/libsolver-ip.la \
+		      kp/libsolver-kp.la \
+		      lp/libsolver-lp.la \
+		      tsp/libsolver-tsp.la
 
 if HAVE_LP_SOLVER
-libsolver_la_LIBADD += @LP_SOLVER_LIB@ -lpthread -lgmp
+libopsolver_la_LIBADD += @LP_SOLVER_LIB@ -lpthread -lgmp
 endif
-libsolver_la_SOURCES =
+libopsolver_la_SOURCES =
 
 
 bin_PROGRAMS = op-solver
 op_solver_SOURCES = op-solver.c cmd/opt.c
-op_solver_LDADD = libsolver.la -lm
+op_solver_LDADD = libopsolver.la -lm
 op_solver_CPPFLAGS = -I$(top_srcdir)/src

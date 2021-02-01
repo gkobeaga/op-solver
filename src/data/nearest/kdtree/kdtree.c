@@ -1,4 +1,5 @@
 #include "op-solver.h"
+#include "kdtree.h"
 
 #define CUTOFF 5
 #define BNDS_DEPTH 5 /* When bnds info is recorded */

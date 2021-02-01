@@ -1,4 +1,5 @@
 #include "op-solver.h"
+#include "nearest/kdtree/kdtree.h"
 
 static double
 dtrunc(double);

@@ -1,4 +1,5 @@
 #include "op-solver.h"
+#include "../nearest/kdtree/kdtree.h"
 
 #define MATRIX_LOWER_DIAG_ROW 0
 #define MATRIX_UPPER_ROW 1
