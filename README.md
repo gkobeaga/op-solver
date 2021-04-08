@@ -1,7 +1,8 @@
 # op-solver
 > Algorithms for the Orienteering Problem
 
-[![Actions Status](https://github.com/gkobeaga/op-solver/workflows/Build/badge.svg)](https://github.com/gkobeaga/op-solver/actions)
+[![Actions Status](https://github.com/gkobeaga/op-solver/workflows/Build-Heur/badge.svg)](https://github.com/gkobeaga/op-solver/actions)
+[![Actions Status](https://github.com/gkobeaga/op-solver/workflows/Build-Exact/badge.svg)](https://github.com/gkobeaga/op-solver/actions)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/gkobeaga/op-solver/blob/master/LICENSE)
 
 ----

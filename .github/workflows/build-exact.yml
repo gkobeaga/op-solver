@@ -1,5 +1,5 @@
 
-name: Build
+name: Build-Exact
 
 on:
   pull_request:

@@ -4,17 +4,19 @@ SUBDIRS = lib data graph
 SUBDIRS += cp ip kp lp op tsp
 
 lib_LTLIBRARIES     = libopsolver.la
-libopsolver_la_LIBADD = data/libsolver-data.la \
-		      graph/libsolver-graph.la \
-		      lib/libsolver-lib.la \
-		      cp/libsolver-cp.la \
-		      ip/libsolver-ip.la \
-		      kp/libsolver-kp.la \
-		      lp/libsolver-lp.la \
-		      tsp/libsolver-tsp.la
+libopsolver_la_LIBADD = \
+			data/libsolver-data.la \
+			graph/libsolver-graph.la \
+			lib/libsolver-lib.la \
+			cp/libsolver-cp.la \
+			kp/libsolver-kp.la \
+			tsp/libsolver-tsp.la
 
 if HAVE_LP_SOLVER
-libopsolver_la_LIBADD += @LP_SOLVER_LIB@ -lpthread -lgmp
+libopsolver_la_LIBADD += \
+			 ip/libsolver-ip.la \
+			 lp/libsolver-lp.la \
+			 @LP_SOLVER_LIB@ -lpthread -lgmp
 endif
 libopsolver_la_SOURCES =
 
