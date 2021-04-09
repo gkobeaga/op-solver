@@ -105,6 +105,7 @@ AC_CONFIG_FILES([Makefile src/Makefile
                  src/tsp/Makefile
                  src/tsp/init/Makefile
                  src/tsp/heur/Makefile
+                 src/tsp/heur/linkern/Makefile
                  src/op/Makefile
                  src/op/init/Makefile
                  src/op/heur/Makefile
