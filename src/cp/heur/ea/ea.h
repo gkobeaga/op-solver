@@ -22,6 +22,8 @@ typedef struct cp_heur_ea_stats
     stats_item *total;
     stats_item *it;
     stats_item *infeas_recover;
+    int write_stats;
+    const char *file;
 } cp_heur_ea_stats;
 
 typedef struct cp_heur_ea_env
@@ -36,6 +38,8 @@ cp_heur_ea_stats *
 cp_create_heur_ea_stats(void);
 void
 cp_free_heur_ea_stats(cp_heur_ea_stats **stats);
+int
+cp_write_heur_ea_stats(cp_prob *cp, cp_heur_ea_env *env);
 
 cp_heur_ea_param *
 cp_create_heur_ea_param(void);

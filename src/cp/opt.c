@@ -15,6 +15,8 @@ cp_opt(cp_prob *cp, cp_env *env, cp_sol *sol)
     check_rval(rval, "stats_start failed", CLEANUP);
     if (param->appr == SOLVER_CP_APPR_HEUR_EA)
     {
+        env->heur->ea->stats->write_stats = 1;
+
         cp_pop *pop = cp_create_pop(cp, env->heur->ea->param->pop_size);
         rval        = cp_init_pop(cp, env->heur, pop);
         rval        = cp_opt_heur_ea(cp, env->heur, pop, sol);
