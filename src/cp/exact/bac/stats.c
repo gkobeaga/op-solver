@@ -35,7 +35,8 @@ cp_create_exact_bac_stats(void)
     stats->xheur_sep          = stats_create("Branch x-heuristic");
     stats->lp_opt             = stats_create("LP opt");
     stats->misc               = stats_create("Miscellaneous");
-    stats->file               = "bac-stats.json";
+    stats->write_stats        = 0;
+    stats->file               = "stats.json";
     return stats;
 }
 

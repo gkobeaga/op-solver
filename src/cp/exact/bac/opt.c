@@ -201,7 +201,8 @@ cp_opt_exact_bac(cp_prob *cp, cp_exact_bac_env *bac_env, cp_sol *sol)
 
 DONE:
 
-    cp_write_exact_bac_stats(cp, bac_env);
+    if (bac_stats->write_stats)
+        cp_write_exact_bac_stats(cp, bac_env);
 
     if (bac_env->ip->param->branch_strat == SOLVER_IP_SEARCH_DFS)
     {

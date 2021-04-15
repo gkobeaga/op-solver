@@ -80,6 +80,7 @@ typedef struct cp_exact_bac_stats
     stats_item *xheur_sep;
     stats_item *lp_opt;
     stats_item *misc;
+    int write_stats;
     const char *file;
 } cp_exact_bac_stats;
 
