@@ -146,13 +146,13 @@ done:
     if (ea_stats->write_stats)
         cp_write_heur_ea_stats(cp, ea_env);
 
-cleanup:
-
     rval = stats_stop(ea_stats->total, 1);
     check_rval(rval, "stats_stop failed", cleanup);
     if (sol->val > cp->sol->val)
         cp_copy_sol(sol, cp->sol);
     cp->sol_status = SOLVER_FEAS;
+
+cleanup:
 
     return rval;
 }
