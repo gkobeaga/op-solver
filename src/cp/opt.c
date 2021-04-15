@@ -17,9 +17,19 @@ cp_opt(cp_prob *cp, cp_env *env, cp_sol *sol)
     {
         env->heur->ea->stats->write_stats = 1;
 
+        rval = stats_start(env->init->stats->total);
+        check_rval(rval, "stats_start failed", CLEANUP);
+
         cp_pop *pop = cp_create_pop(cp, env->heur->ea->param->pop_size);
         rval        = cp_init_pop(cp, env->heur, pop);
-        rval        = cp_opt_heur_ea(cp, env->heur, pop, sol);
+        rval        = stats_stop(env->init->stats->total, !rval);
+        check_rval(rval, "stats_stop failed", CLEANUP);
+
+        if (env->init->stats->write)
+            cp_write_init_stats(cp, env->init);
+
+        rval = cp_opt_heur_ea(cp, env->heur, pop, sol);
+
         cp_free_pop(&pop);
         check_rval(rval, "failed", CLEANUP);
     }

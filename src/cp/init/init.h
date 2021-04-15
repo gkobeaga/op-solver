@@ -18,6 +18,8 @@ typedef struct cp_init_param
 typedef struct cp_init_stats
 {
     stats_item *total;
+    int write;
+    const char *file;
 } cp_init_stats;
 
 typedef struct cp_init_env
@@ -31,6 +33,8 @@ cp_init_stats *
 cp_create_init_stats(void);
 void
 cp_free_init_stats(cp_init_stats **stats);
+int
+cp_write_init_stats(cp_prob *cp, cp_init_env *env);
 
 cp_init_param *
 cp_create_init_param(void);
