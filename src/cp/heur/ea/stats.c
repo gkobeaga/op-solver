@@ -60,8 +60,13 @@ cp_write_heur_ea_stats(cp_prob *cp, cp_heur_ea_env *env)
     fprintf(file, "\"val\": %.0f, ", cp->sol->val);
     fprintf(file, "\"cap\": %.0f, ", cp->sol->cap);
     fprintf(file, "\"sol_ns\": %d, ", cp->sol->ns);
+#if HAVE_LP_SOLVER
     fprintf(file, "\"lb\": %.f, ", cp->ip->lowerboundG);
     fprintf(file, "\"ub\": %.f ", cp->ip->upperboundG);
+#else
+    fprintf(file, "\"lb\": %.f, ", cp->sol->val);
+    fprintf(file, "\"ub\": %.f ", SOLVER_MAXDOUBLE);
+#endif
     fprintf(file, "}, ");
 
     // Parameters
