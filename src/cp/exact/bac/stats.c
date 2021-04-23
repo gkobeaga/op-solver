@@ -113,7 +113,11 @@ cp_write_exact_bac_stats(cp_prob *cp, cp_exact_bac_env *env)
     fprintf(file, "\"cap\": %.0f, ", cp->sol->cap);
     fprintf(file, "\"sol_ns\": %d, ", cp->sol->ns);
     fprintf(file, "\"lb\": %.f, ", cp->ip->lowerboundG);
-    fprintf(file, "\"ub\": %.f ", cp->ip->upperboundG);
+    fprintf(file, "\"ub\": %.f, ", cp->ip->upperboundG);
+    fprintf(file, "\"cycle\": [ ");
+    for (int i = 0; i < cp->sol->ns - 1; i++)
+        fprintf(file, "%d, ", cp->sol->cycle[i] + 1);
+    fprintf(file, "%d]", cp->sol->cycle[cp->sol->ns - 1] + 1);
     fprintf(file, "}, ");
 
     // Parameters
@@ -142,118 +146,120 @@ cp_write_exact_bac_stats(cp_prob *cp, cp_exact_bac_env *env)
     // Stats
     fprintf(file, "\"stats\": { ");
     fprintf(file, "\"time\": %ld, ", stats_get_total_time(stats->total));
-    fprintf(file, "\"active_sep_logical\": %d, ",
+    fprintf(file, "\"sep_logical_active\": %d, ",
             stats->sep_logical->count_active);
-    fprintf(file, "\"success_sep_logical\": %d, ",
+    fprintf(file, "\"sep_logical_success\": %d, ",
             stats->sep_logical->count_success);
-    fprintf(file, "\"total_sep_logical\": %d, ",
+    fprintf(file, "\"sep_logical_total\": %d, ",
             stats->sep_logical->count_total);
+    fprintf(file, "\"sep_logical_time\": %ld, ",
+            stats_get_total_time(stats->sep_logical));
 
-    fprintf(file, "\"active_sep_sec_comps\": %d, ",
+    fprintf(file, "\"sep_sec_comps_active\": %d, ",
             stats->sep_sec_comps->count_active);
-    fprintf(file, "\"success_sep_sec_comps\": %d, ",
+    fprintf(file, "\"sep_sec_comps_success\": %d, ",
             stats->sep_sec_comps->count_success);
-    fprintf(file, "\"total_sep_sec_comps\": %d, ",
+    fprintf(file, "\"sep_sec_comps_total\": %d, ",
             stats->sep_sec_comps->count_total);
-    fprintf(file, "\"time_sep_sec_comps\": %ld, ",
+    fprintf(file, "\"sep_sec_comps_time\": %ld, ",
             stats_get_total_time(stats->sep_sec_comps));
 
-    fprintf(file, "\"active_sep_sec_exact\": %d, ",
+    fprintf(file, "\"sep_sec_exact_active\": %d, ",
             stats->sep_sec_exact->count_active);
-    fprintf(file, "\"success_sep_sec_exact\": %d, ",
+    fprintf(file, "\"sep_sec_exact_success\": %d, ",
             stats->sep_sec_exact->count_success);
-    fprintf(file, "\"total_sep_sec_exact\": %d, ",
+    fprintf(file, "\"sep_sec_exact_total\": %d, ",
             stats->sep_sec_exact->count_total);
-    fprintf(file, "\"time_sep_sec_exact\": %ld, ",
+    fprintf(file, "\"sep_sec_exact_time\": %ld, ",
             stats_get_total_time(stats->sep_sec_exact));
 
-    fprintf(file, "\"active_sep_blossom_fast\": %d, ",
+    fprintf(file, "\"sep_blossom_fast_active\": %d, ",
             stats->sep_blossom_fast->count_active);
-    fprintf(file, "\"success_sep_blossom_fast\": %d, ",
+    fprintf(file, "\"sep_blossom_fast_success\": %d, ",
             stats->sep_blossom_fast->count_success);
-    fprintf(file, "\"total_sep_blossom_fast\": %d, ",
+    fprintf(file, "\"sep_blossom_fast_total\": %d, ",
             stats->sep_blossom_fast->count_total);
-    fprintf(file, "\"time_sep_blossom_fast\": %ld, ",
+    fprintf(file, "\"sep_blossom_fast_time\": %ld, ",
             stats_get_total_time(stats->sep_blossom_fast));
 
-    fprintf(file, "\"active_sep_blossom_ghfast\": %d, ",
+    fprintf(file, "\"sep_blossom_ghfast_active\": %d, ",
             stats->sep_blossom_ghfast->count_active);
-    fprintf(file, "\"success_sep_blossom_ghfast\": %d, ",
+    fprintf(file, "\"sep_blossom_ghfast_success\": %d, ",
             stats->sep_blossom_ghfast->count_success);
-    fprintf(file, "\"total_sep_blossom_ghfast\": %d, ",
+    fprintf(file, "\"sep_blossom_ghfast_total\": %d, ",
             stats->sep_blossom_ghfast->count_total);
-    fprintf(file, "\"time_sep_blossom_fast\": %ld, ",
+    fprintf(file, "\"sep_blossom_ghfast_time\": %ld, ",
             stats_get_total_time(stats->sep_blossom_ghfast));
 
-    fprintf(file, "\"active_sep_blossom_mst\": %d, ",
+    fprintf(file, "\"sep_blossom_mst_active\": %d, ",
             stats->sep_blossom_mst->count_active);
-    fprintf(file, "\"success_sep_blossom_mst\": %d, ",
+    fprintf(file, "\"sep_blossom_mst_success\": %d, ",
             stats->sep_blossom_mst->count_success);
-    fprintf(file, "\"total_sep_blossom_mst\": %d, ",
+    fprintf(file, "\"sep_blossom_mst_total\": %d, ",
             stats->sep_blossom_mst->count_total);
-    fprintf(file, "\"time_sep_blossom_mst\": %ld, ",
+    fprintf(file, "\"sep_blossom_mst_time\": %ld, ",
             stats_get_total_time(stats->sep_blossom_mst));
 
-    fprintf(file, "\"active_sep_cover_edge\": %d, ",
+    fprintf(file, "\"sep_cover_edge_active\": %d, ",
             stats->sep_cover_edge->count_active);
-    fprintf(file, "\"success_sep_cover_edge\": %d, ",
+    fprintf(file, "\"sep_cover_edge_success\": %d, ",
             stats->sep_cover_edge->count_success);
-    fprintf(file, "\"total_sep_cover_edge\": %d, ",
+    fprintf(file, "\"sep_cover_edge_total\": %d, ",
             stats->sep_cover_edge->count_total);
-    fprintf(file, "\"time_sep_cover_edge\": %ld, ",
+    fprintf(file, "\"sep_cover_edge_time\": %ld, ",
             stats_get_total_time(stats->sep_cover_edge));
 
-    fprintf(file, "\"active_sep_cover_cycle\": %d, ",
+    fprintf(file, "\"sep_cover_cycle_active\": %d, ",
             stats->sep_cover_cycle->count_active);
-    fprintf(file, "\"success_sep_cover_cycle\": %d, ",
+    fprintf(file, "\"sep_cover_cycle_success\": %d, ",
             stats->sep_cover_cycle->count_success);
-    fprintf(file, "\"total_sep_cover_cycle\": %d, ",
+    fprintf(file, "\"sep_cover_cycle_total\": %d, ",
             stats->sep_cover_cycle->count_total);
-    fprintf(file, "\"time_sep_cover_cycle\": %ld, ",
+    fprintf(file, "\"sep_cover_cycle_time\": %ld, ",
             stats_get_total_time(stats->sep_cover_cycle));
 
-    fprintf(file, "\"active_sep_cover_vertex\": %d, ",
+    fprintf(file, "\"sep_cover_vertex_active\": %d, ",
             stats->sep_cover_vertex->count_active);
-    fprintf(file, "\"success_sep_cover_vertex\": %d, ",
+    fprintf(file, "\"sep_cover_vertex_success\": %d, ",
             stats->sep_cover_vertex->count_success);
-    fprintf(file, "\"total_sep_cover_vertex\": %d, ",
+    fprintf(file, "\"sep_cover_vertex_total\": %d, ",
             stats->sep_cover_edge->count_total);
-    fprintf(file, "\"time_sep_cover_vertex\": %ld, ",
+    fprintf(file, "\"sep_cover_vertex_time\": %ld, ",
             stats_get_total_time(stats->sep_cover_vertex));
 
-    fprintf(file, "\"active_sep_path\": %d, ", stats->sep_path->count_active);
-    fprintf(file, "\"success_sep_path\": %d, ", stats->sep_path->count_success);
-    fprintf(file, "\"total_sep_path\": %d, ", stats->sep_path->count_total);
-    fprintf(file, "\"time_sep_path\": %ld, ",
+    fprintf(file, "\"sep_path_active\": %d, ", stats->sep_path->count_active);
+    fprintf(file, "\"sep_path_success\": %d, ", stats->sep_path->count_success);
+    fprintf(file, "\"sep_path_total\": %d, ", stats->sep_path->count_total);
+    fprintf(file, "\"sep_path_time\": %ld, ",
             stats_get_total_time(stats->sep_path));
 
-    fprintf(file, "\"time_sep_sep_loop\": %ld, ",
+    fprintf(file, "\"sep_loop_time\": %ld, ",
             stats_get_total_time(stats->sep_loop));
-    fprintf(file, "\"time_sep_sep_loop_it\": %ld, ",
+    fprintf(file, "\"sep_loop_it_time\": %ld, ",
             stats_get_total_time(stats->sep_loop_it));
-    fprintf(file, "\"time_sep_sep_loop_inner\": %ld, ",
+    fprintf(file, "\"sep_loop_inner_time\": %ld, ",
             stats_get_total_time(stats->sep_loop_inner));
-    fprintf(file, "\"time_sep_sep_loop_inner_it\": %ld, ",
+    fprintf(file, "\"sep_loop_inner_it_time\": %ld, ",
             stats_get_total_time(stats->sep_loop_inner_it));
-    fprintf(file, "\"time_sep_sep_loop_middle\": %ld, ",
+    fprintf(file, "\"sep_loop_middle_time\": %ld, ",
             stats_get_total_time(stats->sep_loop_middle));
-    fprintf(file, "\"time_sep_sep_loop_middle_it\": %ld, ",
+    fprintf(file, "\"sep_loop_middle_it_time\": %ld, ",
             stats_get_total_time(stats->sep_loop_middle_it));
-    fprintf(file, "\"time_sep_sep_loop_outer\": %ld, ",
+    fprintf(file, "\"sep_loop_outer_time\": %ld, ",
             stats_get_total_time(stats->sep_loop_outer));
-    fprintf(file, "\"time_sep_sep_loop_outer_it\": %ld, ",
+    fprintf(file, "\"sep_loop_outer_it_time\": %ld, ",
             stats_get_total_time(stats->sep_loop_outer_it));
-    fprintf(file, "\"time_age_cut\": %ld, ",
+    fprintf(file, "\"age_cut_time\": %ld, ",
             stats_get_total_time(stats->age_cuts));
-    fprintf(file, "\"time_age_vars\": %ld, ",
+    fprintf(file, "\"age_vars_time\": %ld, ",
             stats_get_total_time(stats->age_vars));
-    fprintf(file, "\"time_add_vars\": %ld, ",
+    fprintf(file, "\"add_vars_time\": %ld, ",
             stats_get_total_time(stats->add_vars));
-    fprintf(file, "\"time_add_cuts\": %ld, ",
+    fprintf(file, "\"add_cuts_time\": %ld, ",
             stats_get_total_time(stats->add_cuts));
-    fprintf(file, "\"time_xheur_branch\": %ld, ",
+    fprintf(file, "\"xheur_branch_time\": %ld, ",
             stats_get_total_time(stats->xheur_branch));
-    fprintf(file, "\"time_xheur_sep\": %ld ",
+    fprintf(file, "\"xheur_sep_time\": %ld ",
             stats_get_total_time(stats->xheur_sep));
     fprintf(file, "}, ");
 

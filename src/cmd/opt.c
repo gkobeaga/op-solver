@@ -1,13 +1,14 @@
 #include "op-solver.h"
 #include "cp/exact/exact.h"
 #include "cp/exact/bac/bac.h"
+#include "cp/heur/ea/ea.h"
 #include <sys/stat.h>
 
 struct cmd_args
 {
     const char *data_file;
     const char *stats_file;
-    char sol_file[50];
+    const char *sol_file;
 };
 
 static void
@@ -70,7 +71,10 @@ __solver_opt(int argc, char *argv[])
         op_prob *op    = NULL;
         op_env *op_env = op_create_env();
         if (cmd_args.stats_file)
+        {
             op_env->exact->bac->stats->file = cmd_args.stats_file;
+            op_env->heur->ea->stats->file   = cmd_args.stats_file;
+        }
         if (cmd_args.sol_file)
             strcpy(op_env->sol_file, cmd_args.sol_file);
         cp_parse_args(argc, argv, op_env);
@@ -135,12 +139,7 @@ parse_opt_args_(int argc, char *argv[], struct cmd_args *cmd_args)
             k++;
             if (k == argc || argv[k][0] == '\0' || argv[k][0] == '-')
             {
-                printf("No stats file specified\n");
-                return 1;
-            }
-            if (cmd_args->stats_file != NULL)
-            {
-                printf("Only one stats file allowed\n");
+                printf("No seed specified\n");
                 return 1;
             }
             __seed__ = (unsigned long)atoi(argv[k]);
@@ -168,7 +167,8 @@ parse_opt_args_(int argc, char *argv[], struct cmd_args *cmd_args)
                 printf("No solution file specified\n");
                 return 1;
             }
-            strcpy(cmd_args->sol_file, argv[k]);
+            cmd_args->stats_file = argv[k];
+            // strcpy(cmd_args->sol_file, argv[k]);
         }
         else if ((argv[k][0] == '-' && argv[k][1] == '-' && argv[k][2] == 'o' &&
                   argv[k][3] == 'p'))
@@ -189,21 +189,12 @@ parse_opt_args_(int argc, char *argv[], struct cmd_args *cmd_args)
             }
             cmd_args->data_file = argv[k];
 
-            // if (cmd_args->sol_file == NULL)
+#if 0
+            if (!cmd_args->sol_file)
             {
-                char base[50];
-                char seed[50];
-                strcpy(base, "solutions/");
-                mkdir(base, S_IRWXU);
-                strcat(base, strrchr(argv[k], '/') + 1);
-                const int n = snprintf(NULL, 0, "%lu", __seed__);
-                if (!snprintf(seed, n + 1, "%lu", __seed__))
-                    exit(1);
-                memcpy(cmd_args->sol_file, base, strlen(base) - 6);
-                strcat(cmd_args->sol_file, "-");
-                strcat(cmd_args->sol_file, seed);
-                strcat(cmd_args->sol_file, ".sol");
+                cmd_args->sol_file = "solution.json";
             }
+#endif
         }
     }
 

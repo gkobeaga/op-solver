@@ -25,6 +25,10 @@ cp_opt(cp_prob *cp, cp_env *env, cp_sol *sol)
         rval        = stats_stop(env->init->stats->total, !rval);
         check_rval(rval, "stats_stop failed", CLEANUP);
 
+        cp_sol *best = pop->sol[pop->best_ind];
+        if (best->val > sol->val)
+            cp_copy_sol(best, sol);
+
         if (env->init->stats->write)
             cp_write_init_stats(cp, env->init);
 
@@ -46,8 +50,11 @@ cp_opt(cp_prob *cp, cp_env *env, cp_sol *sol)
         check_rval(rval, "failed", CLEANUP);
     }
 
-    rval = cp_write_sol(cp, sol, env->sol_file);
-    check_rval(rval, "failed", CLEANUP);
+    if (env->sol_file)
+    {
+        rval = cp_write_sol(cp, sol, env->sol_file);
+        check_rval(rval, "failed", CLEANUP);
+    }
 
     rval = 0;
 

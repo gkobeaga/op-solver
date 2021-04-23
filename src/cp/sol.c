@@ -162,7 +162,7 @@ int
 cp_write_sol(cp_prob *cp, cp_sol *sol, const char *fname)
 {
     int rval, i;
-    FILE *fp = NULL;
+    FILE *file = NULL;
 
     if (sol == NULL)
     {
@@ -172,34 +172,47 @@ cp_write_sol(cp_prob *cp, cp_sol *sol, const char *fname)
     printf("\n");
     printf("Writing OP solution to '%s'...\n", fname);
 
-    fp = fopen(fname, "w");
-    if (fp == NULL)
-    {
-        printf("Unable to create '%s'\n", fname);
-        rval = 1;
-        goto done;
-    }
+    file = fopen(fname, "a");
+    check_null(file, "Unable to create file", done);
 
-    fprintf(fp, "NAME : %s\n", cp->data->name);
-    fprintf(fp, "TYPE : OP\n");
-    fprintf(fp, "DIMENSION : %d\n", cp->n);
-    fprintf(fp, "COST_LIMIT : %.2f\n", cp->cap);
-    fprintf(fp, "ROUTE_NODES : %d\n", sol->ns);
-    fprintf(fp, "ROUTE_SCORE : %.2f\n", sol->val);
-    fprintf(fp, "ROUTE_COST : %.2f\n", sol->cap);
-    fprintf(fp, "NODE_SEQUENCE_SECTION\n");
-    for (i = 0; i < sol->ns; i++) fprintf(fp, "%d\n", sol->cycle[i] + 1);
-    fprintf(fp, "-1\n");
-    fprintf(fp, "DEPOT_SECTION\n");
-    fprintf(fp, "%d\n", cp->from + 1);
-    fprintf(fp, "-1\n");
-    fprintf(fp, "EOF\n");
+    fprintf(file, "{ ");
+
+    // Problem
+    fprintf(file, "\"prob\": { ");
+    fprintf(file, "\"name\": \"%s\", ", cp->data->name);
+    fprintf(file, "\"type\": \"OP\",");
+    fprintf(file, "\"n\": %d, ", cp->n);
+    fprintf(file, "\"d0\": %.0f, ", cp->data->cap);
+    fprintf(file, "\"depot\": %d", cp->from + 1);
+    fprintf(file, "}, ");
+
+    // Solution
+    fprintf(file, "\"sol\": { ");
+    fprintf(file, "\"val\": %.0f, ", cp->sol->val);
+    fprintf(file, "\"cap\": %.0f, ", cp->sol->cap);
+    fprintf(file, "\"sol_ns\": %d, ", cp->sol->ns);
+    if (cp->ip->sol)
+    {
+        fprintf(file, "\"lb\": %.f, ", cp->ip->lowerboundG);
+        fprintf(file, "\"ub\": %.f, ", cp->ip->upperboundG);
+    }
+    else
+    {
+        fprintf(file, "\"lb\": %.f, ", cp->sol->val);
+        fprintf(file, "\"ub\": %.f, ", SOLVER_MAXDOUBLE);
+    }
+    fprintf(file, "\"cycle\": [ ");
+    for (i = 0; i < sol->ns - 1; i++) fprintf(file, "%d, ", sol->cycle[i] + 1);
+    fprintf(file, "%d]", sol->cycle[sol->ns - 1] + 1);
+    fprintf(file, "}");
+
+    fprintf(file, "}");
 
     rval = 0;
 done:
 
-    if (fp != NULL)
-        fclose(fp);
+    if (file != NULL)
+        fclose(file);
 
     return rval;
 }
