@@ -23,6 +23,10 @@ the Orienteering Problem (OP):
 Both algorithms can be used to solve either small or large OP problems. Choose
 between the heuristic or the exact algorithm depending on your needs.
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/11088290/115864685-849d7400-a437-11eb-88d2-db94b76b3693.gif" alt="animated" width="52.5%" />
+</p>
+
 ## Installation
 
 First, obtain the source code,
