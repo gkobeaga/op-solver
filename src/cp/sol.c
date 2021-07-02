@@ -236,6 +236,46 @@ cp_conv_sol_to_graph(cp_prob *cp, cp_sol *sol)
     return graph;
 }
 
+cp_sol *
+cp_get_sol_from_cycle(cp_prob *cp, int ns, int *cycle)
+{
+    double cap = 0, val = 0;
+
+    cp_sol *sol = cp_create_sol(cp);
+
+    sol->selected[cycle[0]] = 1;
+    sol->sposition[0]       = cycle[0];
+    sol->cycle[0]           = cycle[0];
+    cap += data_get_norm(cp->data, cycle[ns - 1], cycle[0]);
+    val += cp->data->obj_node[cycle[0]];
+
+    for (int i = 1; i < ns; i++)
+    {
+        int prev = cycle[i - 1];
+        int cur  = cycle[i];
+
+        sol->cod_fr[prev]  = cur;
+        sol->cod_bk[cur]   = prev;
+        sol->selected[cur] = 1;
+        sol->sposition[i]  = cur;
+        sol->cycle[i]      = cur;
+
+        cap += data_get_norm(cp->data, prev, cur);
+        val += cp->data->obj_node[cur];
+    }
+
+    for (int i = 0, j = 0; i < cp->n; i++)
+    {
+        if (sol->selected[i])
+            sol->sposition[j++] = i;
+    }
+
+    sol->val = val;
+    sol->cap = cap;
+    sol->ns  = ns;
+    return sol;
+}
+
 void
 cp_plot_sol(cp_prob *cp, cp_sol *sol)
 {

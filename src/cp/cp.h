@@ -134,6 +134,9 @@ cp_write_sol(cp_prob *cp, cp_sol *sol, const char *fname);
 solver_graph *
 cp_conv_sol_to_graph(cp_prob *cp, cp_sol *sol);
 
+cp_sol *
+cp_get_sol_from_cycle(cp_prob *cp, int ns, int *cycle);
+
 cp_pop *
 cp_create_pop(cp_prob *cp, int size);
 void
