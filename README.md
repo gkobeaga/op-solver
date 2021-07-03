@@ -102,6 +102,19 @@ You can increase the verbosity of the RB\&C with:
 ./src/op-solver opt --op-exact 1 --op-exact-bac-verbose 1 OPLib/instances/gen3/kroA150-gen3-50.oplib
 ```
 
+## Running on Docker
+
+> Only available only for the heuristic algorithm.
+
+```sh
+git clone https://github.com/gkobeaga/op-solver
+cd op-solver
+docker build -t op-solver .
+mkdir tmp
+docker run -v $PWD/tmp:/tmp -it --rm op-solver opt /OPLib/instances/gen3/kroA150-gen3-50.oplib
+cat tmp/stats.json
+```
+
 ## Output
 
 By default, the results of the runs are written in a common `stats.json` file.
