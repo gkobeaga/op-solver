@@ -104,7 +104,7 @@ You can increase the verbosity of the RB\&C with:
 
 ## Running on Docker
 
-> Only available only for the heuristic algorithm.
+> Only available for the heuristic algorithm.
 
 ```sh
 git clone https://github.com/gkobeaga/op-solver
