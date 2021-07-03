@@ -191,7 +191,7 @@ cp_write_sol(cp_prob *cp, cp_sol *sol, const char *fname)
     fprintf(file, "\"val\": %.0f, ", cp->sol->val);
     fprintf(file, "\"cap\": %.0f, ", cp->sol->cap);
     fprintf(file, "\"sol_ns\": %d, ", cp->sol->ns);
-    if (cp->ip->sol)
+    if (cp->ip && cp->ip->sol)
     {
         fprintf(file, "\"lb\": %.f, ", cp->ip->lowerboundG);
         fprintf(file, "\"ub\": %.f, ", cp->ip->upperboundG);

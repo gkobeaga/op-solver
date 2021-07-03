@@ -473,12 +473,14 @@ create_first_map(solver_data *data)
         if (data->w)
             map->w[i] = data->w[i];
     }
-    map->dom_n  = data->n;
-    map->img_n  = data->n;
-    map->status = 0;
-    map->prev   = NULL;
-    map->kdtree = NULL;
-    data->map   = map;
+    map->dom_n     = data->n;
+    map->img_n     = data->n;
+    map->status    = 0;
+    map->prev      = NULL;
+    map->kdtree    = NULL;
+    map->kn_ecount = 0;
+    map->kn_elist  = NULL;
+    data->map      = map;
 
     if (data_is_norm_type(data, SOLVER_DATA_TYPE_EUCLIDEAN))
         map->kdtree = kdtree_create(data);

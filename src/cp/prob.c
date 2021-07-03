@@ -12,6 +12,8 @@ cp_init_prob_work(cp_prob *cp, solver_data *data)
     cp->data       = data;
     cp->sol_status = SOLVER_UNDEF;
     cp->sol        = cp_create_sol(cp);
+    cp->from       = data->from;
+    cp->to         = data->to;
 #if HAVE_LP_SOLVER
     cp->ip = ip_create_prob();
 #else
