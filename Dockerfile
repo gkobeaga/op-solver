@@ -1,13 +1,13 @@
-FROM ubuntu:14.04
+FROM alpine:latest
 
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
 
 ARG PACKAGES="git"
-ARG BUILD_DEPS="build-essential autoconf automake libtool m4 libgmp-dev"
+ARG BUILD_DEPS="build-base autoconf automake libtool m4 gmp-dev"
 
-RUN apt-get update
-RUN apt-get install -y $PACKAGES
-RUN apt-get install -y $BUILD_DEPS
+RUN apk update
+RUN apk --no-cache --update add $PACKAGES
+RUN apk --no-cache --update add $BUILD_DEPS
 
 # Install op-solver
 WORKDIR /src
@@ -20,7 +20,6 @@ RUN set -x \
     && ../configure \
     && make \
     && make check \
-    && make distcheck \
     && make install \
   )
 
