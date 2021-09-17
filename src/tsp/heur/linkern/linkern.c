@@ -182,7 +182,10 @@ tsp_opt_heur_linkern(tsp_prob *tsp, tsp_heur_linkern_env *lk_env, tsp_sol *sol)
 
     if (map->img_n < 10 && lk_param->nkicks > 0)
     {
-        printf("Less than 10 nodes, setting repeatcount to 0\n");
+        if (lk_env->verbosity >= SOLVER_VERBOSITY_INFO)
+        {
+            printf("Less than 10 nodes, setting repeatcount to 0\n");
+        }
         nkicks_old       = lk_param->nkicks;
         lk_param->nkicks = 0;
     }
