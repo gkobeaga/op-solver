@@ -88,7 +88,6 @@ __solver_opt(int argc, char *argv[])
         break;
     }
     default:
-        printf("Unknown problem %d.\n", data->prob);
         return 1;
     }
 

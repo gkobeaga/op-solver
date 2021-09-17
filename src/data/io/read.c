@@ -502,7 +502,7 @@ data_read(const char *fname, int format)
     file = fopen(fname, "r");
     if (!file)
     {
-        printf("Unable to open '%s'\n", fname);
+        printf("Unable to open '%s': No such file\n", fname);
         goto done;
     }
 
