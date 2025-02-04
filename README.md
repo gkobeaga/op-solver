@@ -46,7 +46,7 @@ and generate the _configure_ script.
 
 ```sh
 ./autogen.sh
-mkdir -p build && cd build
+mkdir -p build
 ```
 
 Since the external LP solver used in the exact algorithm is proprietary software,
@@ -59,7 +59,7 @@ By default, the solver is built only with the heuristic algorithm:
 
 ```sh
 make clean
-../configure
+./configure
 make
 ```
 
@@ -70,8 +70,8 @@ in your system. To build the `op-solver` with the exact algorithm:
 
 ```sh
 make clean
-../configure --with-cplex=<CPLEX_PATH>
-#../configure --with-cplex=/opt/ibm/ILOG/CPLEX_Studio125/cplex/
+./configure --with-cplex=<CPLEX_PATH>
+#./configure --with-cplex=/opt/ibm/ILOG/CPLEX_Studio125/cplex/
 make
 ```
 
