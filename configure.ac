@@ -72,7 +72,7 @@ AS_IF([test "x$with_cplex" != "xno"],
 
 AS_IF([test "x$have_cplex" = "xyes"],
       [
-       AC_SUBST(LP_SOLVER_LIB, [$with_cplex/lib/x86-64_sles10_4.1/static_pic/libcplex.a])
+       AC_SUBST(LP_SOLVER_LIB, [$with_cplex/lib/x86-64_linux/static_pic/libcplex.a])
        AC_SUBST(LP_SOLVER_INCLUDE, [$with_cplex/include])
        ],
        [AS_IF([test "x$with_cplex" = "xyes"],
