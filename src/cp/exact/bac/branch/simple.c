@@ -59,7 +59,7 @@ cp_find_branch_edge(cp_prob *cp, cp_exact_bac_env *bac_env, graph_arc **edge)
                 {
                     maxdiff = tedge->x;
                     best    = graph_find_arc_hash(lp->graph->archash,
-                                               tedge->tail->i, tedge->head->i);
+                                                  tedge->tail->i, tedge->head->i);
                 }
             }
             else if (tedge->x <= SOLVER_ONEMINUS)
@@ -69,7 +69,7 @@ cp_find_branch_edge(cp_prob *cp, cp_exact_bac_env *bac_env, graph_arc **edge)
                 {
                     maxdiff = 1.0 - tedge->x;
                     best    = graph_find_arc_hash(lp->graph->archash,
-                                               tedge->tail->i, tedge->head->i);
+                                                  tedge->tail->i, tedge->head->i);
                 }
             }
         }

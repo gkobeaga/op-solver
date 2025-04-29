@@ -18,7 +18,7 @@ print_version_and_args(int argc, char *argv[]);
 int
 parse_opt_args_(int argc, char *argv[], struct cmd_args *cmd_args);
 
-//#define RNG_SEED 947107
+// #define RNG_SEED 947107
 
 int
 __solver_opt(int argc, char *argv[])

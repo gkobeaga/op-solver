@@ -647,7 +647,7 @@ sort_vert_y(const void *xx, const void *yy)
     return 0;
 }
 
-//#define SUPPOT_COCLIQUE
+// #define SUPPOT_COCLIQUE
 
 int
 cp_get_clique_repo_sec_cuts(cp_prob *cp, cp_exact_bac_env *bac_env,
@@ -832,9 +832,9 @@ cp_get_clique_repo_sec_cuts(cp_prob *cp, cp_exact_bac_env *bac_env,
                 if (bac_env->param->sec_max_viol)
                 {
 
-                    nselin = bac_env->param->sec_max_vin < nin
-                             ? bac_env->param->sec_max_vin
-                             : nin;
+                    nselin  = bac_env->param->sec_max_vin < nin
+                              ? bac_env->param->sec_max_vin
+                              : nin;
                     nselout = bac_env->param->sec_max_vout < nout
                               ? bac_env->param->sec_max_vout
                               : nout;

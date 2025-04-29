@@ -545,8 +545,7 @@ cp_add_lp_cut2data(cp_prob *cp, cp_exact_bac_env *bac_env, cp_cut *cut,
             lp_realloc_data(
             *data, (*data)->nzcnt + clique_count(cut->cover_vertex->verts), 2);
         graph->marker++;
-        FOREACH_NODE_IN_CLIQUE (i, cut->cover_vertex->verts, j)
-            ;
+        FOREACH_NODE_IN_CLIQUE (i, cut->cover_vertex->verts, j);
         {
             (*data)->val[((*data)->nzcnt)]   = 1;
             (*data)->ind[((*data)->nzcnt)++] = i;

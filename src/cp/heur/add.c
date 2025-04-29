@@ -463,9 +463,7 @@ cp_improve_heur_in(cp_prob *cp, cp_heur_env *heur_env, cp_sol *sol)
 {
     int rval = 0;
     int i, j, node, prev, next;
-    int
-    try
-        = 1;
+    int try = 1;
     double min, cap_tmp, value, tmp_value;
     data_map *map = cp->data->map;
 
@@ -534,8 +532,7 @@ cp_improve_heur_in(cp_prob *cp, cp_heur_env *heur_env, cp_sol *sol)
             check_rval(prev == 0, "ERROR: prev!=0\n", CLEANUP);
         }
         else
-            try
-                = 0;
+            try = 0;
     }
 
     for (i = 0, j = 0; i < map->img_n; i++)

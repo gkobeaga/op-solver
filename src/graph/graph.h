@@ -266,8 +266,7 @@ __foreach_not_in_next_tmp(graph_clique *c, int *nseg, int *i)
     {
         int tmp = *nseg;
         *nseg   = *i >= c->nodes[*nseg].lo ? (*nseg) + 1 : *nseg;
-        for (; *i >= c->nodes[tmp].lo && *i <= c->nodes[tmp].hi; (*i)++)
-            ;
+        for (; *i >= c->nodes[tmp].lo && *i <= c->nodes[tmp].hi; (*i)++);
     }
 }
 

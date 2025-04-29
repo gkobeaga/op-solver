@@ -1,8 +1,8 @@
 #include "op-solver.h"
 
 #define dheap_D 3
-#define dheap_UP(x) (((x)-1) / dheap_D)
-#define dheap_DOWN(x) (((x)*dheap_D) + 1)
+#define dheap_UP(x) (((x) - 1) / dheap_D)
+#define dheap_DOWN(x) (((x) * dheap_D) + 1)
 
 static void
 dheap_siftup(solver_dheap *dheap, int i, int x),

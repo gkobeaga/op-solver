@@ -103,7 +103,7 @@ data_plot_nearest(solver_data *data)
     for (int i = 0; i < data->map->kn_ecount; i++)
     {
         arc          = graph_add_arc(graph, data->map->kn_elist[2 * i],
-                            data->map->kn_elist[2 * i + 1]);
+                                     data->map->kn_elist[2 * i + 1]);
         arc->x       = 1;
         arc->tail->y = 1;
         arc->head->y = 1;

@@ -659,8 +659,7 @@ graph_identify_vertices(solver_graph *graph, graph_vertex *v, graph_vertex *u)
     else
     {
         graph_vertex *t;
-        for (t = v->members; t->members; t = t->members)
-            ;
+        for (t = v->members; t->members; t = t->members);
         t->members = u;
     }
     v->nmembers += u->nmembers;
@@ -961,8 +960,7 @@ graph_plot(solver_graph *graph)
     fclose(pipe);
 
     printf("Press Enter to Continue\n");
-    while (getchar() != '\n')
-        ;
+    while (getchar() != '\n');
 
     return;
 }

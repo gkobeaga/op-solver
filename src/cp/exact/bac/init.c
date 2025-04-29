@@ -60,7 +60,7 @@ cp_init_exact_bac(cp_prob *cp, cp_exact_bac_env *bac_env)
     for (int i = 0; i < data->map->kn_ecount; i++)
     {
         arc       = graph_add_arc(lp->graph, data->map->kn_elist[2 * i],
-                            data->map->kn_elist[2 * i + 1]);
+                                  data->map->kn_elist[2 * i + 1]);
         arc->cost = data_get_norm(data, data->map->kn_elist[2 * i],
                                   data->map->kn_elist[2 * i + 1]);
     }

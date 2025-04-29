@@ -351,7 +351,7 @@ gh_recursive(solver_graph *graph, graph_ghtree *ghtree, graph_ghtree_node *n,
     oldmax    = b_cut->special->max;
     oldmcount = b_cut->mcount;
     rval      = shrinkdown(ghtree, graph, bcount, b_srknodes, b_cut->special,
-                      &ecount, elist, ecap);
+                           &ecount, elist, ecap);
     check_rval(rval, "shrinkdown failed", CLEANUP);
     if (b_srknodes)
         free(b_srknodes);
@@ -370,7 +370,7 @@ gh_recursive(solver_graph *graph, graph_ghtree *ghtree, graph_ghtree_node *n,
     oldmax    = a_cut->special->max;
     oldmcount = a_cut->mcount;
     rval      = shrinkdown(ghtree, graph, acount, a_srknodes, a_cut->special,
-                      &ecount, elist, ecap);
+                           &ecount, elist, ecap);
     check_rval(rval, "shrinkdown failed", CLEANUP);
     if (a_srknodes)
         free(a_srknodes);

@@ -424,8 +424,8 @@ cp_get_xheur_ea__(void *cp_, void *bac_env_, void *sol_, int *nadded),
 cp_get_xheur_ea(cp_prob *cp, cp_exact_bac_env *bac_env, cp_sol *sol);
 
 #define inside_pos(n, i, j)                                                    \
-    (i < j ? (i * (((n)-1) + ((n)-i)) / 2 + j - i - 1)                         \
-           : (j * (((n)-1) + ((n)-j)) / 2 + i - j - 1))
+    (i < j ? (i * (((n) - 1) + ((n) - i)) / 2 + j - i - 1)                     \
+           : (j * (((n) - 1) + ((n) - j)) / 2 + i - j - 1))
 
 int
 cp_is_sol_lp_feasible(cp_prob *cp, cp_exact_bac_env *bac_env, cp_sol *sol);

@@ -221,7 +221,7 @@ call_random_tour(cp_prob *cp, solver_graph *graph, int nextremes,
         else
         {
             arc     = graph_add_arc(graph, current,
-                                extremes[2 * shortcyc[i + 1] + zero_cnt]->i);
+                                    extremes[2 * shortcyc[i + 1] + zero_cnt]->i);
             arc->x  = 1.0;
             current = extremes[2 * shortcyc[i + 1] + 1 + zero_cnt]->i;
         }
