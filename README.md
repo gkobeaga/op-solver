@@ -14,8 +14,8 @@ In this repository, you will find the implementation of two algorithms to solve
 the Orienteering Problem (OP):
 
 - **RB&C** (exact):
-  ["A revisited branch-and-cut algorithm for large-scale orienteering problems"](https://arxiv.org/abs/2011.02743)
-  by G. Kobeaga, M. Merino and J.A. Lozano
+  ["A revisited branch-and-cut algorithm for large-scale orienteering problems"](https://www.sciencedirect.com/science/article/pii/S0377221723005933)
+  by G. Kobeaga, J. Rojas-Delgado, M. Merino and J.A. Lozano
 - **EA4OP** (heuristic):
   ["An evolutionary algorithm for the orienteering problem"](https://www.sciencedirect.com/science/article/abs/pii/S0305054817302241)
   by G. Kobeaga, M. Merino and J.A. Lozano
