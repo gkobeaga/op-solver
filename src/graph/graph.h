@@ -331,7 +331,7 @@ graph_read(char *fname);
 
 /* Minimum and Maximum Spanning trees*/
 
-#define SOLVER_MST_MAX 0
+#define SOLVER_MST_MAX 1
 #define SOLVER_MST_MIN 0
 solver_graph *
 graph_get_mst(solver_graph *graph, int max),
